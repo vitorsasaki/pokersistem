@@ -1,5 +1,6 @@
 package com.example.pokersistem.domain.jogador;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,6 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Jogador {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +26,8 @@ public class Jogador {
 
     private String estado;
 
-    private int idPP;
+    @Column (name = "id_pp")
+    private Integer idPP;
 
     private String senha;
 
