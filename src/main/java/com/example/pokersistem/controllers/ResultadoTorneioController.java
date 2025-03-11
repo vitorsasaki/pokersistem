@@ -23,8 +23,13 @@ public class ResultadoTorneioController {
 
     @PostMapping
     public ResponseEntity salvar(@RequestBody @Valid ResultadoTorneioRequestDTO resultadoTorneioRequestDTO){
-        ResultadoTorneio resultadoTorneio = resultadoTorneioService.salvar(new ResultadoTorneio(resultadoTorneioRequestDTO)) ;
-        return ResponseEntity.ok().build();
+        try {
+            ResultadoTorneio resultadoTorneio = resultadoTorneioService.salvar(new ResultadoTorneio(resultadoTorneioRequestDTO)) ;
+            return ResponseEntity.ok().build();
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+
 
     }
 
@@ -43,7 +48,7 @@ public class ResultadoTorneioController {
         ResultadoTorneio resultadoTorneioNew = new ResultadoTorneio();
         BeanUtils.copyProperties(resultadoTorneioRequestDTO, resultadoTorneioNew);
         resultadoTorneioNew.setId(resultadoTorneioOptional.get().getId());
-        return ResponseEntity.status(HttpStatus.OK).body(resultadoTorneioService.salvar(resultadoTorneioNew));
+        return ResponseEntity.status(HttpStatus.OK).body(resultadoTorneioService.update(resultadoTorneioNew));
 
     }
 

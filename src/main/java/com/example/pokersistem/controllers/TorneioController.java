@@ -34,6 +34,11 @@ public class TorneioController {
         return ResponseEntity.ok(torneioResponseDTOList);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> buscarTorneioId(@PathVariable(value = "id")Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(torneioService.buscarTorneioPorId(id));
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity updateTorneio(@PathVariable(value = "id") Long id, @RequestBody @Valid TorneioRequestDTO torneioRequestDTO){
         Optional<Torneio> torneioOptional = torneioService.findById(id);

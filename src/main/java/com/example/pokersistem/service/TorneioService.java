@@ -1,6 +1,7 @@
 package com.example.pokersistem.service;
 
 import com.example.pokersistem.domain.Torneio.Torneio;
+import com.example.pokersistem.domain.Torneio.TorneioResponseDTO;
 import com.example.pokersistem.domain.jogador.Jogador;
 import com.example.pokersistem.repository.TorneioRepository;
 import jakarta.transaction.Transactional;
@@ -25,6 +26,12 @@ public class TorneioService {
 
     public List<Torneio> buscar(){
         return torneioRepository.findAll();
+    }
+
+    public TorneioResponseDTO buscarTorneioPorId(Long id){
+        Optional<Torneio> torneio = torneioRepository.findById(id);
+        TorneioResponseDTO torneioResponseDTO = new TorneioResponseDTO(torneio.get());
+        return torneioResponseDTO;
     }
 
 

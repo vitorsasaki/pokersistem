@@ -18,6 +18,7 @@ public record TorneioRequestDTO(
         Integer totalBuyins,
         BigDecimal totalPremiacao,
         Integer totalRebuys,
-        TipoTorneio tipoTorneio
+        TipoTorneio tipoTorneio,
+        BigDecimal peso
 ) {
 }

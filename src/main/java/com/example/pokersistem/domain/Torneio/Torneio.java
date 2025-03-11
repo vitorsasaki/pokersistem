@@ -63,6 +63,8 @@ public class Torneio implements Serializable {
     @Column(name = "ano_ranking")
     private Integer anoRanking;
 
+    private BigDecimal peso;
+
     public Torneio(TorneioRequestDTO data) {
         this.tipoTorneio = data.tipoTorneio();
         this.numeroEntradas = data.numeroEntradas();
@@ -76,5 +78,6 @@ public class Torneio implements Serializable {
         this.dataTorneio = data.dataTorneio();
         this.mesRanking = data.mesRanking();
         this.anoRanking = data.anoRanking();
+        this.peso = data.peso();
     }
 }

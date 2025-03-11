@@ -13,7 +13,7 @@ public record TorneioResponseDTO(Long id, Integer anoRanking, Date dataTorneio,
                                  BigDecimal fichasCortesia, Integer mesRanking,
                                  Integer numeroEntradas, BigDecimal rake,
                                  EnumSimNao torneioDoRanking, Integer totalAddons,
-                                 Integer totalBuyins, BigDecimal totalPremiacao, Integer totalRebuys, TipoTorneio tipoTorneio) {
+                                 Integer totalBuyins, BigDecimal totalPremiacao, Integer totalRebuys, TipoTorneio tipoTorneio, BigDecimal peso) {
 
     public TorneioResponseDTO(Torneio torneio){
         this(torneio.getId(),
@@ -28,7 +28,8 @@ public record TorneioResponseDTO(Long id, Integer anoRanking, Date dataTorneio,
                 torneio.getTotalBuyins(),
                 torneio.getTotalPremiacao(),
                 torneio.getTotalRebuys(),
-                torneio.getTipoTorneio());
+                torneio.getTipoTorneio(),
+                torneio.getPeso());
     }
 
 
