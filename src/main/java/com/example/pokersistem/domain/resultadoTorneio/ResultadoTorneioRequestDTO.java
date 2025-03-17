@@ -11,6 +11,7 @@ public record ResultadoTorneioRequestDTO(
         Torneio torneio,
         Integer posicao,
         BigDecimal totalPontosGanho,
-        EnumSimNao pontoBonus
+        EnumSimNao pontoBonus,
+        EnumSimNao atualizado
 ) {
 }

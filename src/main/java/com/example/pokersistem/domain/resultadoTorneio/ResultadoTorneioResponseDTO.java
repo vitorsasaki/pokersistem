@@ -11,13 +11,15 @@ public record ResultadoTorneioResponseDTO(Long id,
                                           Torneio torneio,
                                           Integer posicao,
                                           BigDecimal totalPontosGanho,
-                                          EnumSimNao pontoBonus) {
+                                          EnumSimNao pontoBonus,
+                                          EnumSimNao atualizado) {
     public ResultadoTorneioResponseDTO(ResultadoTorneio resultadoTorneio){
         this(resultadoTorneio.getId(),
                 resultadoTorneio.getJogador(),
                 resultadoTorneio.getTorneio(),
                 resultadoTorneio.getPosicao(),
                 resultadoTorneio.getTotalPontosGanho(),
-                resultadoTorneio.getPontoBonus());
+                resultadoTorneio.getPontoBonus(),
+                resultadoTorneio.getAtualizado());
     }
 }

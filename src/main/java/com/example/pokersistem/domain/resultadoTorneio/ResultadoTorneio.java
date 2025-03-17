@@ -22,7 +22,8 @@ public class ResultadoTorneio {
     private long id;
 
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_jogador", referencedColumnName = "id", nullable = true, foreignKey = @ForeignKey(name = "fk_resultadoTorneioJogador"), unique = true)
+    @JoinColumn(name = "id_jogador", referencedColumnName = "id", nullable = true, foreignKey = @ForeignKey(name = "fk_resultadoTorneioJogador")
+    )
     private Jogador jogador;
 
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
@@ -36,12 +37,16 @@ public class ResultadoTorneio {
     @Enumerated(EnumType.STRING)
     private EnumSimNao pontoBonus;
 
+    @Enumerated(EnumType.STRING)
+    private EnumSimNao atualizado;
+
     public ResultadoTorneio(ResultadoTorneioRequestDTO data){
         this.jogador = data.jogador();
         this.torneio = data.torneio();
         this.posicao = data.posicao();
         this.totalPontosGanho = data.totalPontosGanho();
         this.pontoBonus = data.pontoBonus();
+        this.atualizado = data.atualizado();
     }
 
 

@@ -32,11 +32,13 @@ public class ResultadoTorneioService {
 
     @Transactional
     public ResultadoTorneio salvar(ResultadoTorneio resultadoTorneio){
-        Optional<ResultadoTorneio> jogadorCadastrado = resultadoTorneioRepository.findByJogador_id(resultadoTorneio.getJogador().getId());
+        Optional<ResultadoTorneio> jogadorCadastrado = resultadoTorneioRepository.findByJogador_idAndTorneio_id(resultadoTorneio.getJogador().getId(),
+                                                                                                   resultadoTorneio.getTorneio().getId());
 
         if(jogadorCadastrado.isPresent())
             throw new RuntimeException("Esse jogador ja foi cadastrado a posição dele nesse torneio!");
 
+        resultadoTorneio.setAtualizado(EnumSimNao.NAO);
         resultadoTorneio.setTotalPontosGanho(calculaPontuacaoJogador(resultadoTorneio));
 
         return resultadoTorneioRepository.save(resultadoTorneio);
@@ -50,6 +52,11 @@ public class ResultadoTorneioService {
     public List<ResultadoTorneio> buscar(){
         return resultadoTorneioRepository.findAll(Sort.by(Sort.Order.asc("torneio"), Sort.Order.asc("posicao")));
     }
+
+    public List<ResultadoTorneio> buscarResultadosNaoAtualizados(){
+        return resultadoTorneioRepository.findByAtualizado(EnumSimNao.NAO);
+    }
+
 
     public Optional<ResultadoTorneio> findById(Long id){
         return resultadoTorneioRepository.findById(id);
