@@ -6,6 +6,7 @@ import com.example.pokersistem.repository.DevedoresRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class DevedoresService {
     }
 
     public List<Devedores> buscar(){
-        return devedoresRepository.findAll();
+        return devedoresRepository.findAll(Sort.by(Sort.Order.desc("dataUltimaAtualizacao")));
     }
 
     public Optional<Devedores> findById(Long id){
