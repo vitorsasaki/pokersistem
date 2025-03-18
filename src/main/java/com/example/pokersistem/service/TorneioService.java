@@ -7,6 +7,7 @@ import com.example.pokersistem.repository.TorneioRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class TorneioService {
     }
 
     public List<Torneio> buscar(){
-        return torneioRepository.findAll();
+        return torneioRepository.findAll(Sort.by(Sort.Order.desc("id")));
     }
 
     public TorneioResponseDTO buscarTorneioPorId(Long id){
