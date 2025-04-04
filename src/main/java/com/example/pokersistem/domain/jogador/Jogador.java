@@ -31,6 +31,8 @@ public class Jogador {
 
     private String senha;
 
+    private String celular;
+
     public Jogador(JogadorRequestDTO data){
         this.nome = data.nome();
         this.nomeReal = data.nomeReal();
@@ -38,6 +40,7 @@ public class Jogador {
         this.estado = data.estado();
         this.idPP = data.idPP();
         this.senha = data.senha();
+        this.celular = data.celular();
 
     }
 

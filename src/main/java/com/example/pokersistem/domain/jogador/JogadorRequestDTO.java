@@ -11,6 +11,7 @@ public record JogadorRequestDTO(
         String login,
         String estado,
         Integer idPP,
-        String senha
+        String senha,
+        String celular
 ) {
 }
