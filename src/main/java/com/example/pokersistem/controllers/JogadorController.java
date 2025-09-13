@@ -5,6 +5,7 @@ import com.example.pokersistem.domain.jogador.JogadorRequestDTO;
 import com.example.pokersistem.domain.jogador.JogadorResponseDTO;
 import com.example.pokersistem.service.JogadorService;
 import jakarta.validation.Valid;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CommonsLog
 @RestController
 @RequestMapping("/jogadores")
 public class JogadorController {
@@ -25,6 +27,7 @@ public class JogadorController {
 
     @PostMapping
     public ResponseEntity salvarJogador(@RequestBody @Valid JogadorRequestDTO jogadorRequestDTO){
+        log.info("teste");
         Jogador jogador = jogadorService.salvar(new Jogador(jogadorRequestDTO)) ;
         return ResponseEntity.ok().build();
 
