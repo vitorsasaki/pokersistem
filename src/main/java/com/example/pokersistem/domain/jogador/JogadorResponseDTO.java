@@ -1,6 +1,6 @@
 package com.example.pokersistem.domain.jogador;
 
-public record JogadorResponseDTO(Long id, String nome, String nomeReal, String login, String estado, Integer idPP, String senha, String celular) {
+public record JogadorResponseDTO(Long id, String nome, String nomeReal, String login, String estado, Long idPP, String senha, String celular) {
     public JogadorResponseDTO(Jogador jogador){
         this(jogador.getId(),
                 jogador.getNome(),

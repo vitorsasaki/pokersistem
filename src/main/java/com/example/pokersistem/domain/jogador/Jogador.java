@@ -26,8 +26,8 @@ public class Jogador {
 
     private String estado;
 
-    @Column (name = "id_pp")
-    private Integer idPP;
+    @Column(name = "id_pp")
+    private Long idPP;
 
     private String senha;
 

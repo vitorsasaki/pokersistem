@@ -33,11 +33,15 @@ public class LancamentoDevedor {
 
     private Date data;
 
+    @Column(name = "id_operador")
+    private Integer idOperador;
+
     public LancamentoDevedor(LancamentoDevedorRequestDTO data){
         this.jogador = data.jogador();
         this.tipoLancamento = data.tipoLancamento();
         this.valor = data.valor();
         this.data = data.data();
+        this.idOperador = data.idOperador();
     }
 
 }

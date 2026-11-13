@@ -1,8 +1,12 @@
 package com.example.pokersistem.controllers;
 
+import com.example.pokersistem.domain.lancamentoDevedor.ExecutarSelecionadosRequestDTO;
+import com.example.pokersistem.domain.lancamentoDevedor.ExecutarSelecionadosResultadoDTO;
+import com.example.pokersistem.domain.lancamentoDevedor.ImportacaoLancamentoResultadoDTO;
 import com.example.pokersistem.domain.lancamentoDevedor.LancamentoDevedor;
 import com.example.pokersistem.domain.lancamentoDevedor.LancamentoDevedorRequestDTO;
 import com.example.pokersistem.domain.lancamentoDevedor.LancamentoDevedorResponseDTO;
+import com.example.pokersistem.service.ImportacaoLancamentoService;
 import com.example.pokersistem.service.LancamentoDevedorService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -10,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,11 +26,28 @@ public class LancamentoDevedorController {
     @Autowired
     private LancamentoDevedorService lancamentoDevedorService;
 
+    @Autowired
+    private ImportacaoLancamentoService importacaoLancamentoService;
+
     @PostMapping
     public ResponseEntity salvar(@RequestBody @Valid LancamentoDevedorRequestDTO lancamentoDevedorRequestDTO){
         LancamentoDevedor lancamentoDevedor = lancamentoDevedorService.salvar(new LancamentoDevedor(lancamentoDevedorRequestDTO)) ;
         return ResponseEntity.ok().build();
 
+    }
+
+    @PostMapping("/importar")
+    public ResponseEntity<ImportacaoLancamentoResultadoDTO> importar(@RequestParam("file") MultipartFile file) {
+        ImportacaoLancamentoResultadoDTO resultado = importacaoLancamentoService.importar(file);
+        return ResponseEntity.ok(resultado);
+    }
+
+    @PostMapping("/executar-selecionados")
+    public ResponseEntity<ExecutarSelecionadosResultadoDTO> executarSelecionados(
+            @RequestBody @Valid ExecutarSelecionadosRequestDTO request) {
+        ExecutarSelecionadosResultadoDTO resultado = lancamentoDevedorService
+                .executarSelecionados(request.ids(), request.tipoLancamento());
+        return ResponseEntity.ok(resultado);
     }
 
     @GetMapping

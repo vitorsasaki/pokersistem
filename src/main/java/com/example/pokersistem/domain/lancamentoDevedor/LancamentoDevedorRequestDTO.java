@@ -10,6 +10,7 @@ public record LancamentoDevedorRequestDTO(
         Jogador jogador,
         EnumTipoLancamento tipoLancamento,
         BigDecimal valor,
-        Date data
+        Date data,
+        Integer idOperador
 ) {
 }

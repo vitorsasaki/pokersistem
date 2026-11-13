@@ -9,12 +9,14 @@ import java.util.Date;
 public record LancamentoDevedorResponseDTO(Long id, Jogador jogador,
                                            EnumTipoLancamento tipoLancamento,
                                            BigDecimal valor,
-                                           Date data) {
+                                           Date data,
+                                           Integer idOperador) {
     public LancamentoDevedorResponseDTO(LancamentoDevedor lancamentoDevedor){
         this(lancamentoDevedor.getId(),
                 lancamentoDevedor.getJogador(),
                 lancamentoDevedor.getTipoLancamento(),
                 lancamentoDevedor.getValor(),
-                lancamentoDevedor.getData());
+                lancamentoDevedor.getData(),
+                lancamentoDevedor.getIdOperador());
     }
 }
